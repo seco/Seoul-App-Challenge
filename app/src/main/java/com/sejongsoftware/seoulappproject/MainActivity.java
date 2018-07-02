@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView myTextView;
     private String OpenApiKey = "414f414a6963686f33316d65547677";
 
+    private JSONObject MinuteParticle, UltrafinePartcile, Ozone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +38,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class AirQuality extends AsyncTask<Void, Void, Void> {
-//http://openAPI.seoul.go.kr:8088/sample/xml/ForecastWarningMinuteParticleOfDustService/1/1/
-
         private String rUrl = "http://openAPI.seoul.go.kr:8088/"+ OpenApiKey +"/json";
-        private String DS = "/ForecastWarningMinuteParticleOfDustService/1/1"; // 미세먼지
 
-        private JSONObject DustInfo;
+        private String services[] = {
+                "ForecastWarningMinuteParticleOfDustService",
+                "ForecastWarningUltrafineParticleOfDustService",
+                "ForecastWarningOzoneService",
+        };
+
+        //Json 이름
+        //ForecastWarningMinuteParticleOfDustService
+        //ForecastWarningUltrafineParticleOfDustService
 
         @Override
         protected void onPreExecute() {
@@ -53,17 +59,33 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             try {
-                myTextView.setText(DustInfo.get("ALARM_CNDT").toString());
+                myTextView.setText(UltrafinePartcile.get("ALARM_CNDT").toString());
             } catch (Exception e) {
 
             }
-
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                URL url = new URL(rUrl + DS);
+                MinuteParticle = getJsonAtUrl(0);
+                UltrafinePartcile = getJsonAtUrl(1);
+                Ozone = getJsonAtUrl(2);
+
+                Log.i("Parser", MinuteParticle.toString());
+                Log.i("Parser", UltrafinePartcile.toString());
+                Log.i("Parser", Ozone.toString());
+            } catch (Exception e) {
+                Log.i("Parser", "실패");
+            }
+            return null;
+        }
+
+        private JSONObject getJsonAtUrl(int service) {
+            JSONObject result = new JSONObject();
+            String input_url = rUrl + "/" + services[service] + "/1/1";
+            try {
+                URL url = new URL(input_url);
                 HttpURLConnection conn;
                 String protocol = "GET";
                 BufferedReader br;
@@ -73,14 +95,15 @@ public class MainActivity extends AppCompatActivity {
                 br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
                 JSONObject json = new JSONObject(br.readLine());
-                JSONObject DustService = (JSONObject) json.get("ForecastWarningMinuteParticleOfDustService");
+                JSONObject DustService = (JSONObject) json.get(services[service]);
                 JSONArray DustArr = (JSONArray) DustService.get("row");
-                DustInfo = (JSONObject) DustArr.get(0);
-                Log.i("Parser", DustInfo.toString());
+                result = (JSONObject) DustArr.get(0);
+
             } catch (Exception e) {
-                Log.i("Parser", "실패");
+                Log.i("getJsonAtUrl", "실패");
             }
-            return null;
+
+            return result;
         }
     }
 }
