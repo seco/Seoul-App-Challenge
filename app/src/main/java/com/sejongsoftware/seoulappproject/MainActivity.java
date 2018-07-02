@@ -1,10 +1,15 @@
 package com.sejongsoftware.seoulappproject;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,26 +21,41 @@ import java.net.URL;
 
 import kr.go.seoul.airquality.AirQualityTypeMini;
 
-public class MainActivity extends AppCompatActivity {
-    private AirQualityTypeMini typeMini;
-    private TextView myTextView;
-    private String OpenApiKey = "414f414a6963686f33316d65547677";
+public class MainActivity extends Activity {
+    //private String OpenApiKey = "414f414a6963686f33316d65547677";
 
-    private JSONObject MinuteParticle, UltrafinePartcile, Ozone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        typeMini = (AirQualityTypeMini) findViewById(R.id.type_mini);
-        typeMini.setOpenAPIKey(OpenApiKey);
+        Button.OnClickListener onClickListener = new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch(view.getId()) {
+                    case R.id.user_btn:
+                        Toast.makeText( getApplicationContext(), "user", Toast.LENGTH_SHORT ).show();
+                        break;
 
-        myTextView = (TextView) findViewById(R.id.text_view);
+                    case R.id.manager_btn:
+                        Intent intent = new Intent( getApplicationContext(), LoginActivity.class );
+                        startActivity(intent);
+                        finish();
+                        break;
+                }
+            }
+        };
 
-        AirQuality Parser = new AirQuality();
-        Parser.execute();
+        Button userBtn = (Button) findViewById(R.id.user_btn);
+        Button managerBtn = (Button) findViewById(R.id.manager_btn);
+
+        userBtn.setOnClickListener(onClickListener);
+        managerBtn.setOnClickListener(onClickListener);
+
     }
+
+    /*
 
     private class AirQuality extends AsyncTask<Void, Void, Void> {
         private String rUrl = "http://openAPI.seoul.go.kr:8088/"+ OpenApiKey +"/json";
@@ -106,4 +126,5 @@ public class MainActivity extends AppCompatActivity {
             return result;
         }
     }
+    */
 }

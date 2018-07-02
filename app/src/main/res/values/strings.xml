@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SeoulAppProject</string>
+    
+    <string-array name="school_list">
+        <item>Shcool1</item>
+        <item>Shcool2</item>
+        <item>Shcool3</item>
+        <item>Shcool4</item>
+    </string-array>
 </resources>
