@@ -1,6 +1,7 @@
 package com.sejongsoftware.seoulappproject;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -10,12 +11,24 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by choyoushin on 2018. 7. 2..
@@ -63,6 +76,7 @@ public class RegisterActivity extends Activity {
         Log.i("tryRegister_id", id);
         Log.i("tryRegister_pass", pass);
 
+        /*
         try {
             URL url = new URL("http://localhost:8080/public/register");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -79,5 +93,11 @@ public class RegisterActivity extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
+    }
+
+    public void sendDataToServer()
+    {
+        String URL = "http://localhost:8080/public";
     }
 }

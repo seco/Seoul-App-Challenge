@@ -1,1 +1,1 @@
-include ':app', ':airquality-release'
+include ':app', ':airquality-release', ':httpcore-4.4.9', ':httpclient-4.5.5'

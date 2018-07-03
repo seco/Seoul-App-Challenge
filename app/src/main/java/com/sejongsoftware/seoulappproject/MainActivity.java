@@ -7,28 +7,43 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.go.seoul.airquality.AirQualityTypeMini;
 
 public class MainActivity extends Activity {
-    //private String OpenApiKey = "414f414a6963686f33316d65547677";
-
+    private String OpenApiKey = "414f414a6963686f33316d65547677";
+    private AirQualityTypeMini typeMini;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //typeMini = (AirQualityTypeMini) findViewById(R.id.type_mini);
+        //typeMini.setOpenAPIKey(OpenApiKey);
 
         Button.OnClickListener onClickListener = new Button.OnClickListener() {
             @Override
@@ -52,6 +67,56 @@ public class MainActivity extends Activity {
 
         userBtn.setOnClickListener(onClickListener);
         managerBtn.setOnClickListener(onClickListener);
+
+        //WebView wv = (WebView) findViewById(R.id.web_view);
+        //wv.loadUrl("http://10.0.0.2:8080/public/auth/register");
+
+        HttpController hc = new HttpController();
+        hc.execute();
+    }
+
+    class HttpController extends AsyncTask<Void, Void, Void> {
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httppost = new HttpPost("http://10.0.2.2:8080/public/auth/register");
+        HttpResponse response;
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            Log.i("response", response.toString());
+
+
+            super.onPostExecute(aVoid);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            try {
+                // 아래처럼 적절히 응용해서 데이터형식을 넣으시고
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+                nameValuePairs.add(new BasicNameValuePair("id", "12345"));
+                nameValuePairs.add(new BasicNameValuePair("stringdata", "Hi"));
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                Log.i("Http", "여기까지 실행됨");
+                //HTTP Post 요청 실행
+                response = httpclient.execute(httppost);
+                Log.i("response", response.toString());
+            } catch (ClientProtocolException e) {
+                // TODO Auto-generated catch block
+                Log.i("Http", "안됨");
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                Log.i("Http", "안됨");
+            } catch (Exception e) {
+                Log.i("Http", "안됨");
+            }
+            return null;
+        }
+    }
+
+    public void postData() {
+        // Create a new HttpClient and Post Header
 
     }
 
