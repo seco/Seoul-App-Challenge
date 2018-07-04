@@ -71,48 +71,6 @@ public class MainActivity extends Activity {
         //WebView wv = (WebView) findViewById(R.id.web_view);
         //wv.loadUrl("http://10.0.0.2:8080/public/auth/register");
 
-        HttpController hc = new HttpController();
-        hc.execute();
-    }
-
-    class HttpController extends AsyncTask<Void, Void, Void> {
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://10.0.2.2:8080/public/auth/register");
-        HttpResponse response;
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            Log.i("response", response.toString());
-
-
-            super.onPostExecute(aVoid);
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-
-            try {
-                // 아래처럼 적절히 응용해서 데이터형식을 넣으시고
-                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-                nameValuePairs.add(new BasicNameValuePair("id", "12345"));
-                nameValuePairs.add(new BasicNameValuePair("stringdata", "Hi"));
-                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-                Log.i("Http", "여기까지 실행됨");
-                //HTTP Post 요청 실행
-                response = httpclient.execute(httppost);
-                Log.i("response", response.toString());
-            } catch (ClientProtocolException e) {
-                // TODO Auto-generated catch block
-                Log.i("Http", "안됨");
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                Log.i("Http", "안됨");
-            } catch (Exception e) {
-                Log.i("Http", "안됨");
-            }
-            return null;
-        }
     }
 
     public void postData() {

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -19,6 +20,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -94,7 +98,97 @@ public class RegisterActivity extends Activity {
             e.printStackTrace();
         }
         */
+
+        HttpController httpController = new HttpController();
+        httpController.execute(id, pass);
     }
+
+    class HttpController extends AsyncTask<String, Void, Void> {
+        HttpClient httpclient = new DefaultHttpClient();
+        String url = "http://10.0.2.2:8080/public/auth/register";
+        HttpPost httppost = new HttpPost(url);
+        HttpResponse response;
+        String result;
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            HttpEntity resEntity = response.getEntity();
+            String result = "";
+            try {
+                result = EntityUtils.toString(resEntity);
+            } catch( Exception e ) {
+
+            }
+            Log.i("response", result );
+
+
+            super.onPostExecute(aVoid);
+        }
+
+        @Override
+        protected Void doInBackground(String... strings) {
+
+            try {
+                // 아래처럼 적절히 응용해서 데이터형식을 넣으시고
+
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+                nameValuePairs.add(new BasicNameValuePair("id", strings[0]));
+                nameValuePairs.add(new BasicNameValuePair("pass", strings[1]));
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                Log.i("Http", "여기까지 실행됨");
+                //HTTP Post 요청 실행
+                response = httpclient.execute(httppost);
+                Log.i("response", response.toString());
+            } catch (ClientProtocolException e) {
+                // TODO Auto-generated catch block
+                Log.i("Http", "안됨");
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                Log.i("Http", "안됨");
+            } catch (Exception e) {
+                Log.i("Http", "안됨");
+            }
+
+
+            return null;
+        }
+    }
+
+    private static String convertStreamToString(InputStream is)
+
+    {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line = null;
+        try
+        {
+            while ((line = reader.readLine()) != null)
+            {
+                sb.append(line + "\n");
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                is.close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        return sb.toString();
+    }
+
+
 
     public void sendDataToServer()
     {
