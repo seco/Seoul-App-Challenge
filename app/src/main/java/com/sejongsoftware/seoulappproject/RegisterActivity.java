@@ -1,6 +1,7 @@
 package com.sejongsoftware.seoulappproject;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -153,45 +154,5 @@ public class RegisterActivity extends Activity {
 
             return null;
         }
-    }
-
-    private static String convertStreamToString(InputStream is)
-
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
-
-        String line = null;
-        try
-        {
-            while ((line = reader.readLine()) != null)
-            {
-                sb.append(line + "\n");
-            }
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
-                is.close();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        return sb.toString();
-    }
-
-
-
-    public void sendDataToServer()
-    {
-        String URL = "http://localhost:8080/public";
     }
 }
