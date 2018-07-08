@@ -42,7 +42,7 @@ public class ListActivity extends Activity {
         Service = intent.getStringExtra("service");
 
         items = new ArrayList<String>();
-        adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, items);
+        adapter = new ArrayAdapter(getApplicationContext(), R.layout.services_list_item, R.id.item_label, items);
         servicesList = (ListView) findViewById(R.id.list_service);
         servicesList.setAdapter(adapter);
 
