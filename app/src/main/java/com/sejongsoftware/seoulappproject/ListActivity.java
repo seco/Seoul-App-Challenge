@@ -22,7 +22,8 @@ import java.util.List;
 
 /**
  * Created by choyoushin on 2018. 7. 8..
- * http://openAPI.seoul.go.kr:8088/(인증키)/xml/ListPublicReservationInstitution/1/5/(소분류)
+ * http://openAPI.seoul.go.kr:8088/(인증키)/xml/ * http://openAPI.seoul.go.kr:8088/(인증키)/xml/ListPublicReservationInstitution/1/5/(소분류)
+ ListPublicReservationInstitution/1/5/(소분류)
  */
 
 public class ListActivity extends Activity {
