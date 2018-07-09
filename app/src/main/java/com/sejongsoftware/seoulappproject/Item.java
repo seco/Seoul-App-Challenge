@@ -6,6 +6,7 @@ package com.sejongsoftware.seoulappproject;
 
 public class Item {
     String SVCID; // 서비스 ID
+    String SVCNM; // 서비스
     String MAXCLASSNM, MINCLASSNM; // 대분류명, 소분류명
     String AREANM; // 지역(구)
     String SVCSTATNM; // 접수 상태
@@ -13,6 +14,14 @@ public class Item {
     String PAYATNM; // 결제 방법
     String PLACENM; // 장소명
     String USETGTINFO; // 대상
+
+    public String getSVCNM() {
+        return SVCNM;
+    }
+
+    public void setSVCNM(String SVCNM) {
+        this.SVCNM = SVCNM;
+    }
 
     public String getSVCID() {
         return SVCID;
@@ -86,9 +95,10 @@ public class Item {
         this.USETGTINFO = USETGTINFO;
     }
 
-    public Item(String svcid, String maxclassnm, String minclassnm, String areanm, String svcstatnm, String imgurl, String payatnm, String placenm, String usetgtinfo)
+    public Item(String svcid, String svcnm, String maxclassnm, String minclassnm, String areanm, String svcstatnm, String imgurl, String payatnm, String placenm, String usetgtinfo)
     {
         this.SVCID = svcid;
+        this.SVCNM = svcnm;
         this.MAXCLASSNM = maxclassnm;
         this.MINCLASSNM = minclassnm;
         this.AREANM = areanm;

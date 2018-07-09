@@ -5,6 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -28,21 +33,30 @@ public class ServicesListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return alist.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;4
+    public Object getItem(int position) {
+        return alist.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return 0;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        if (convertView == null) convertView = inflater.inflate(layout, parent, false);
+
+        TextView tv_item_name = (TextView) convertView.findViewById(R.id.item_label);
+        TextView tv_item_state = (TextView) convertView.findViewById(R.id.item_state);
+        LinearLayout item_layout = (LinearLayout) convertView.findViewById(R.id.item_layout);
+
+        tv_item_name.setText(alist.get(position).getSVCNM());
+        tv_item_state.setText(alist.get(position).getSVCSTATNM());
+
+        return convertView;
     }
 }

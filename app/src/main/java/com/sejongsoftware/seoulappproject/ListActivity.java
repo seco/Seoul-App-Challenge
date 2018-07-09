@@ -31,8 +31,8 @@ public class ListActivity extends Activity {
     String API_KEY = "414f414a6963686f33316d65547677", Service;
     int LIST_IDX = 0;
     ListView servicesList;
-    ArrayList<String> items;
-    ArrayAdapter adapter;
+    ArrayList<Item> items;
+    ServicesListAdapter ca;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,10 +42,10 @@ public class ListActivity extends Activity {
         Intent intent = getIntent();
         Service = intent.getStringExtra("service");
 
-        items = new ArrayList<String>();
-        adapter = new ArrayAdapter(getApplicationContext(), R.layout.services_list_item, R.id.item_label, items);
+        items = new ArrayList<Item>();
+        ca = new ServicesListAdapter(getApplicationContext(), R.layout.services_list_item, items);
         servicesList = (ListView) findViewById(R.id.list_service);
-        servicesList.setAdapter(adapter);
+        servicesList.setAdapter(ca);
 
         ServciesListTask servciesListTask = new ServciesListTask();
         servciesListTask.execute(API_KEY, Service);
@@ -66,10 +66,22 @@ public class ListActivity extends Activity {
             try {
                 for (int i = 0; i < services.length(); i++) {
                     JSONObject order = services.getJSONObject(i);
-                    items.add(order.get("SVCNM").toString());
+                    //items.add(order.get("SVCNM").toString());
+                    Item item = new Item(
+                            order.get("SVCID").toString(),
+                            order.get("SVCNM").toString(),
+                            order.get("MAXCLASSNM").toString(),
+                            order.get("MINCLASSNM").toString(),
+                            order.get("AREANM").toString(),
+                            order.get("SVCSTATNM").toString(),
+                            order.get("IMGURL").toString(),
+                            order.get("PAYATNM").toString(),
+                            order.get("PLACENM").toString(),
+                            order.get("USETGTINFO").toString()
+                            );
+                    items.add(item);
                 }
-
-                adapter.notifyDataSetChanged();
+                ca.notifyDataSetChanged();
             } catch (Exception e) {
                 e.printStackTrace();
             }
