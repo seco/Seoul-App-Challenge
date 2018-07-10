@@ -59,38 +59,10 @@ public class ServicesListAdapter extends BaseAdapter {
 
         TextView tv_item_name = (TextView) convertView.findViewById(R.id.item_label);
         TextView tv_item_state = (TextView) convertView.findViewById(R.id.item_state);
-        ImageView tv_item_img = (ImageView) convertView.findViewById(R.id.item_img);
         LinearLayout item_layout = (LinearLayout) convertView.findViewById(R.id.item_layout);
 
         tv_item_name.setText(alist.get(position).getSVCNM());
         tv_item_state.setText(alist.get(position).getSVCSTATNM());
-
-        Thread mThread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL(alist.get(position).getIMGURL());
-
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setDoInput(true);
-                    conn.connect();
-
-                    InputStream is = conn.getInputStream();
-                    bitmap = BitmapFactory.decodeStream(is);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        mThread.start();
-
-        try {
-            mThread.join();
-            tv_item_img.setImageBitmap(bitmap);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         return convertView;
     }

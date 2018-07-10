@@ -10,7 +10,6 @@ public class Item {
     String MAXCLASSNM, MINCLASSNM; // 대분류명, 소분류명
     String AREANM; // 지역(구)
     String SVCSTATNM; // 접수 상태
-    String IMGURL; // 이미지 경로
     String PAYATNM; // 결제 방법
     String PLACENM; // 장소명
     String USETGTINFO; // 대상
@@ -63,14 +62,6 @@ public class Item {
         this.SVCSTATNM = SVCSTATNM;
     }
 
-    public String getIMGURL() {
-        return IMGURL;
-    }
-
-    public void setIMGURL(String IMGURL) {
-        this.IMGURL = IMGURL;
-    }
-
     public String getPAYATNM() {
         return PAYATNM;
     }
@@ -95,7 +86,7 @@ public class Item {
         this.USETGTINFO = USETGTINFO;
     }
 
-    public Item(String svcid, String svcnm, String maxclassnm, String minclassnm, String areanm, String svcstatnm, String imgurl, String payatnm, String placenm, String usetgtinfo)
+    public Item(String svcid, String svcnm, String maxclassnm, String minclassnm, String areanm, String svcstatnm, String payatnm, String placenm, String usetgtinfo)
     {
         this.SVCID = svcid;
         this.SVCNM = svcnm;
@@ -103,7 +94,6 @@ public class Item {
         this.MINCLASSNM = minclassnm;
         this.AREANM = areanm;
         this.SVCSTATNM = svcstatnm;
-        this.IMGURL = imgurl;
         this.PAYATNM = payatnm;
         this.PLACENM = placenm;
         this.USETGTINFO = usetgtinfo;

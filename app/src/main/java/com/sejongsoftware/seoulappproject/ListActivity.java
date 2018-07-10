@@ -74,7 +74,6 @@ public class ListActivity extends Activity {
                             order.get("MINCLASSNM").toString(),
                             order.get("AREANM").toString(),
                             order.get("SVCSTATNM").toString(),
-                            order.get("IMGURL").toString(),
                             order.get("PAYATNM").toString(),
                             order.get("PLACENM").toString(),
                             order.get("USETGTINFO").toString()
