@@ -26,19 +26,19 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 switch(view.getId()) {
                     case R.id.btnSport:
-                        Service = "Sport";
+                        Service = "체육시설";
                         break;
                     case R.id.btnInstitution:
-                        Service = "Institution";
+                        Service = "시설대관";
                         break;
                     case R.id.btnEducation:
-                        Service = "Education";
+                        Service = "교육";
                         break;
                     case R.id.btnCulture:
-                        Service = "Culture";
+                        Service = "문화행사";
                         break;
                     case R.id.btnMedical:
-                        Service = "Medical";
+                        Service = "진료";
                         break;
                 }
 
@@ -62,77 +62,4 @@ public class MainActivity extends Activity {
 
 
     }
-
-    /*
-
-    private class AirQuality extends AsyncTask<Void, Void, Void> {
-        private String rUrl = "http://openAPI.seoul.go.kr:8088/"+ OpenApiKey +"/json";
-
-        private String services[] = {
-                "ForecastWarningMinuteParticleOfDustService",
-                "ForecastWarningUltrafineParticleOfDustService",
-                "ForecastWarningOzoneService",
-        };
-
-        //Json 이름
-        //ForecastWarningMinuteParticleOfDustService
-        //ForecastWarningUltrafineParticleOfDustService
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            try {
-                myTextView.setText(UltrafinePartcile.get("ALARM_CNDT").toString());
-            } catch (Exception e) {
-
-            }
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                MinuteParticle = getJsonAtUrl(0);
-                UltrafinePartcile = getJsonAtUrl(1);
-                Ozone = getJsonAtUrl(2);
-
-                Log.i("Parser", MinuteParticle.toString());
-                Log.i("Parser", UltrafinePartcile.toString());
-                Log.i("Parser", Ozone.toString());
-            } catch (Exception e) {
-                Log.i("Parser", "실패");
-            }
-            return null;
-        }
-
-        private JSONObject getJsonAtUrl(int service) {
-            JSONObject result = new JSONObject();
-            String input_url = rUrl + "/" + services[service] + "/1/1";
-            try {
-                URL url = new URL(input_url);
-                HttpURLConnection conn;
-                String protocol = "GET";
-                BufferedReader br;
-
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod(protocol);
-                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-
-                JSONObject json = new JSONObject(br.readLine());
-                JSONObject DustService = (JSONObject) json.get(services[service]);
-                JSONArray DustArr = (JSONArray) DustService.get("row");
-                result = (JSONObject) DustArr.get(0);
-
-            } catch (Exception e) {
-                Log.i("getJsonAtUrl", "실패");
-            }
-
-            return result;
-        }
-    }
-    */
 }

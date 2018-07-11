@@ -51,7 +51,7 @@ public class RegisterActivity extends Activity {
 
         spinner = (Spinner) findViewById(R.id.select_school_list);
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.school_list, android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.sport_list, android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
     }
 
@@ -130,8 +130,7 @@ public class RegisterActivity extends Activity {
         protected Void doInBackground(String... strings) {
 
             try {
-                // 아래처럼 적절히 응용해서 데이터형식을 넣으시고
-
+                  // 아래처럼 적절히 응용해서 데이터형식을 넣으시고
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
                 nameValuePairs.add(new BasicNameValuePair("id", strings[0]));
                 nameValuePairs.add(new BasicNameValuePair("pass", strings[1]));
