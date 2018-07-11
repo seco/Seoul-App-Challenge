@@ -63,6 +63,13 @@ public class ServicesListAdapter extends BaseAdapter {
 
         tv_item_name.setText(alist.get(position).getSVCNM());
         tv_item_state.setText(alist.get(position).getSVCSTATNM());
+        if (alist.get(position).getSVCSTATNM().equals("접수중") ) {
+            tv_item_state.setBackgroundResource(R.drawable.borderd_svcstat_good);
+        }
+        else {
+            tv_item_state.setBackgroundResource(R.drawable.borderd_svcstat_bad);
+        }
+
 
         return convertView;
     }
