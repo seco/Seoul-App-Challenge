@@ -74,8 +74,11 @@ public class ListActivity extends Activity {
                 break;
         }
 
+        Spinner areaSpinner = (Spinner) findViewById(R.id.spinnerArea);
+        areaSpinner.setAdapter(ArrayAdapter.createFromResource(this, R.array.area_list, android.R.layout.simple_spinner_item));
+
         ServciesListTask servciesListTask = new ServciesListTask();
-        servciesListTask.execute(API_KEY, MAXCLASSNM, MINCLASSNM);
+        servciesListTask.execute(API_KEY, MAXCLASSNM, MINCLASSNM, AREANM);
     }
 
     public class ServciesListTask extends AsyncTask<String, Void, JSONArray> {
@@ -134,8 +137,9 @@ public class ListActivity extends Activity {
                 if( !strings[2].equals("소분류") ) {
                     nameValuePairs.add(new BasicNameValuePair("MINCLASSNM", strings[2]));
                 }
-
-                //nameValuePairs.add(new BasicNameValuePair("AREANM", "강남구"));
+                if( !strings[3].equals("지역명") ) {
+                    nameValuePairs.add(new BasicNameValuePair("AREANM", strings[3]));
+                }
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "utf-8"));
                 response = httpclient.execute(httppost);
                 resEntity = response.getEntity();
@@ -153,9 +157,11 @@ public class ListActivity extends Activity {
     public void searchByCategory(View view)
     {
         Spinner spinner_min_class = (Spinner) findViewById(R.id.spinnerMinClass);
+        Spinner spinner_area = (Spinner) findViewById(R.id.spinnerArea);
         MINCLASSNM = spinner_min_class.getSelectedItem().toString();
+        AREANM = spinner_area.getSelectedItem().toString();
 
         ServciesListTask servciesListTask = new ServciesListTask();
-        servciesListTask.execute(API_KEY, MAXCLASSNM, MINCLASSNM);
+        servciesListTask.execute(API_KEY, MAXCLASSNM, MINCLASSNM, AREANM);
     }
 }

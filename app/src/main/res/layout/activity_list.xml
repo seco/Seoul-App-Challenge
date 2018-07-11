@@ -14,19 +14,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:gravity="right">
+            <Spinner
+                android:id="@+id/spinnerArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Spinner>
             <Spinner
                 android:id="@+id/spinnerMinClass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-
             </Spinner>
             <Button
                 android:id="@+id/btnCategorySearch"
                 android:text="조회"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="searchByCategory"/>
+                android:onClick="searchByCategory" />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
