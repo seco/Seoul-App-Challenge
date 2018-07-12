@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,6 +26,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -46,6 +49,7 @@ public class ListActivity extends Activity {
     int LIST_IDX = 0;
     ListView servicesList;
     ServicesListAdapter ca;
+    ArrayList<Item> items;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +58,7 @@ public class ListActivity extends Activity {
 
         Intent intent = getIntent();
         MAXCLASSNM = intent.getStringExtra("service");
+        servicesList = (ListView) findViewById(R.id.list_service);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerMinClass);
         switch (MAXCLASSNM) {
@@ -74,11 +79,22 @@ public class ListActivity extends Activity {
                 break;
         }
 
+        TextView tv_activity_title = (TextView) findViewById(R.id.activity_title);
+        tv_activity_title.setText(MAXCLASSNM);
+
+
         Spinner areaSpinner = (Spinner) findViewById(R.id.spinnerArea);
         areaSpinner.setAdapter(ArrayAdapter.createFromResource(this, R.array.area_list, android.R.layout.simple_spinner_item));
 
         ServciesListTask servciesListTask = new ServciesListTask();
         servciesListTask.execute(API_KEY, MAXCLASSNM, MINCLASSNM, AREANM);
+
+        servicesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Toast.makeText(getApplicationContext(), items.get(position).getSVCNM().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public class ServciesListTask extends AsyncTask<String, Void, JSONArray> {
@@ -89,10 +105,8 @@ public class ListActivity extends Activity {
 
         @Override
         protected void onPostExecute(JSONArray services) {
-            ArrayList<Item> items;
             items = new ArrayList<Item>();
             ca = new ServicesListAdapter(getApplicationContext(), R.layout.services_list_item, items);
-            servicesList = (ListView) findViewById(R.id.list_service);
             servicesList.setAdapter(ca);
 
             Log.i("JSON", services.toString());
@@ -163,5 +177,11 @@ public class ListActivity extends Activity {
 
         ServciesListTask servciesListTask = new ServciesListTask();
         servciesListTask.execute(API_KEY, MAXCLASSNM, MINCLASSNM, AREANM);
+    }
+
+    public void goToDetail(View view)
+    {
+        Log.i("Detail", "hello");
+        //Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
     }
 }
