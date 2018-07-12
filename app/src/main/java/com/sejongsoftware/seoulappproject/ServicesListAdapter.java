@@ -59,10 +59,12 @@ public class ServicesListAdapter extends BaseAdapter {
 
         TextView tv_item_name = (TextView) convertView.findViewById(R.id.item_label);
         TextView tv_item_state = (TextView) convertView.findViewById(R.id.item_state);
+        TextView tv_item_place = (TextView) convertView.findViewById(R.id.item_place);
         LinearLayout item_layout = (LinearLayout) convertView.findViewById(R.id.item_layout);
 
         tv_item_name.setText(alist.get(position).getSVCNM());
         tv_item_state.setText(alist.get(position).getSVCSTATNM());
+        tv_item_place.setText(alist.get(position).getPLACENM());
         if (alist.get(position).getSVCSTATNM().equals("접수중") ) {
             tv_item_state.setBackgroundResource(R.drawable.borderd_svcstat_good);
         }
