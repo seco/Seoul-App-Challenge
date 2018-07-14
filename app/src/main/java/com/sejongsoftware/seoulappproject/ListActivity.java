@@ -92,7 +92,9 @@ public class ListActivity extends Activity {
         servicesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(getApplicationContext(), items.get(position).getSVCNM().toString(), Toast.LENGTH_SHORT).show();
+                Intent intent_detail = new Intent( getApplicationContext(), DetailActivity.class );
+                intent_detail.putExtra("SVCID", items.get(position).getSVCID().toString());
+                startActivity(intent_detail);
             }
         });
     }

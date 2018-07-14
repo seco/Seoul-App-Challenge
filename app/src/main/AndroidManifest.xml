@@ -23,6 +23,8 @@
         <activity android:name=".SplashActivity"/>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".ListActivity"/>
+        <activity android:name=".DetailActivity"/>
+
     </application>
 
 </manifest>
