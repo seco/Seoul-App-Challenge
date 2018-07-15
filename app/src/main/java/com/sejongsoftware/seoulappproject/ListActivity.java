@@ -180,10 +180,4 @@ public class ListActivity extends Activity {
         ServciesListTask servciesListTask = new ServciesListTask();
         servciesListTask.execute(API_KEY, MAXCLASSNM, MINCLASSNM, AREANM);
     }
-
-    public void goToDetail(View view)
-    {
-        Log.i("Detail", "hello");
-        //Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
-    }
 }
