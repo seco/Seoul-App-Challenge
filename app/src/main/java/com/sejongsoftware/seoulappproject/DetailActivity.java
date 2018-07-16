@@ -2,11 +2,18 @@ package com.sejongsoftware.seoulappproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.TextView;
+
+import com.nhn.android.maps.NMapActivity;
+import com.nhn.android.maps.NMapOverlayItem;
+import com.nhn.android.maps.NMapView;
+import com.nhn.android.maps.maplib.NGeoPoint;
+import com.nhn.android.maps.overlay.NMapPOIitem;
 
 import org.json.JSONObject;
 
@@ -20,8 +27,10 @@ import java.net.URL;
  * Created by choyoushin on 2018. 7. 14..
  */
 
-public class DetailActivity extends Activity {
+public class DetailActivity extends NMapActivity {
     String SVCID;
+    JSONObject data = null;
+    NMapView mMapView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,14 +40,24 @@ public class DetailActivity extends Activity {
         Intent intent = getIntent();
         SVCID = intent.getStringExtra("SVCID");
 
+        mMapView = (NMapView) findViewById(R.id.nmap_view);
+        mMapView.setClientId("IaMjtxVpIlW6_R7PlD4p");
+        mMapView.setClickable(true);
+        mMapView.setEnabled(true);
+        mMapView.setFocusable(true);
+        mMapView.setFocusableInTouchMode(true);
+        mMapView.requestFocus();
+        mMapView.setScalingFactor(1.5f);
+        //mMapView.getMapController().animateTo(new NGeoPoint( 127.036976, 37.473049 ));
+
         GetSVCdetail getSVCdetail = new GetSVCdetail();
         getSVCdetail.execute();
+
     }
 
     public class GetSVCdetail extends AsyncTask<Void, Void, Void>
     {
         String API_KEY = "414f414a6963686f33316d65547677";
-        JSONObject data = null;
 
         @Override
         protected void onPostExecute(Void aVoid) {
@@ -50,10 +69,28 @@ public class DetailActivity extends Activity {
 
             try {
                 tv_detail_SVCNM.setText( data.get("SVCNM").toString() );
-                tv_detail_SVCSTTUS_NM.setText( data.get("SVCSTTUS_NM").toString() );
+
+                if ( data.has("SVCSTTUS_NM") ) {
+                    tv_detail_SVCSTTUS_NM.setText( data.get("SVCSTTUS_NM").toString() );
+                }
+                else {
+                    tv_detail_SVCSTTUS_NM.setText( data.get("SVCSTATNM").toString() );
+                }
+
+
+                if ( !data.get("X").toString().equals("0") ) {
+                    NGeoPoint point = new NGeoPoint(
+                            Double.parseDouble(data.get("Y").toString()),
+                            Double.parseDouble(data.get("X").toString())
+                    );
+
+                    mMapView.getMapController().setMapCenter( point, 12 );
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
         }
 
         @Override
@@ -61,8 +98,6 @@ public class DetailActivity extends Activity {
         {
             try {
                 URL JSON_URL = new URL("http://openAPI.seoul.go.kr:8088/"+API_KEY+"/json/ListPublicReservationDetail/1/1/"+SVCID);
-
-                Log.d("JSON_URL", JSON_URL.toString());
 
                 HttpURLConnection conn = (HttpURLConnection) JSON_URL.openConnection();
                 InputStream is = conn.getInputStream();
@@ -72,17 +107,30 @@ public class DetailActivity extends Activity {
                 String strJson = br.readLine();
 
 
-
                 JSONObject jsonObj = new JSONObject(strJson);
-                data = (JSONObject) jsonObj.getJSONObject("ListPublicReservationDetail").getJSONArray("row").get(0);
+                if ( jsonObj.has("ListPublicReservationDetail") ) {
+                    data = (JSONObject) jsonObj.getJSONObject("ListPublicReservationDetail").getJSONArray("row").get(0);
+                }
+                else {
+                    URL JSON_URL1 = new URL("http://10.0.2.2:8080/public/service/" + SVCID);
 
+                    Log.d("JSON_URL", JSON_URL1.toString());
+
+                    HttpURLConnection conn1 = (HttpURLConnection) JSON_URL1.openConnection();
+                    InputStream is1 = conn1.getInputStream();
+                    BufferedReader br1 = new BufferedReader(new InputStreamReader(is1, "UTF-8"));
+                    strJson = br1.readLine();
+
+                    Log.i("strJson", strJson);
+
+                    data = new JSONObject(strJson);
+                }
                 //Log.i("jsonObj", jsonObj.get("row").toString());
 
                 //data = new JSONObject(jsonObj.get("row").toString());
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.d("strJson", "실패");
             }
-
 
             return null;
         }

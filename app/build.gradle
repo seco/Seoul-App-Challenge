@@ -40,4 +40,5 @@ dependencies {
     compile project(':httpcore-4.4.9')
     compile project(':httpclient-4.5.5')
     compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
+    compile 'com.naver.maps.open:naver-map-api:2.1.2@aar'
 }
