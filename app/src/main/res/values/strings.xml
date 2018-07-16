@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SeoulAppProject</string>
-    
+    <string name="str_done">완료</string>
+
     <string-array name="sport_list">
         <item>소분류</item>
         <item>축구장</item>

@@ -7,13 +7,19 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.nhn.android.maps.NMapActivity;
 import com.nhn.android.maps.NMapOverlayItem;
 import com.nhn.android.maps.NMapView;
 import com.nhn.android.maps.maplib.NGeoPoint;
+import com.nhn.android.maps.overlay.NMapPOIdata;
 import com.nhn.android.maps.overlay.NMapPOIitem;
+import com.nhn.android.mapviewer.overlay.NMapOverlayManager;
+import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay;
+import com.nhn.android.mapviewer.overlay.NMapResourceProvider;
 
 import org.json.JSONObject;
 
@@ -31,6 +37,9 @@ public class DetailActivity extends NMapActivity {
     String SVCID;
     JSONObject data = null;
     NMapView mMapView;
+    private NMapResourceProvider nMapResourceProvider;
+    private NMapOverlayManager mapOverlayManager;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,9 +56,12 @@ public class DetailActivity extends NMapActivity {
         mMapView.setFocusable(true);
         mMapView.setFocusableInTouchMode(true);
         mMapView.requestFocus();
-        mMapView.setScalingFactor(1.5f);
-        //mMapView.getMapController().animateTo(new NGeoPoint( 127.036976, 37.473049 ));
+        mMapView.setScalingFactor(1.7f);
 
+        nMapResourceProvider = new NMapViewerResourceProvider(this);
+        mapOverlayManager = new NMapOverlayManager(this, mMapView, nMapResourceProvider);
+
+        //mMapView.getMapController().animateTo(new NGeoPoint( 127.036976, 37.473049 ))
         GetSVCdetail getSVCdetail = new GetSVCdetail();
         getSVCdetail.execute();
 
@@ -84,7 +96,22 @@ public class DetailActivity extends NMapActivity {
                             Double.parseDouble(data.get("X").toString())
                     );
 
-                    mMapView.getMapController().setMapCenter( point, 12 );
+                    mMapView.getMapController().setMapCenter( point, 8 );
+
+                    int markerId = NMapPOIflagType.PIN;
+
+                    NMapPOIdata poIdata = new NMapPOIdata(1, nMapResourceProvider);
+                    poIdata.beginPOIdata(1);
+                    poIdata.addPOIitem(
+                            Double.parseDouble(data.get("Y").toString()),
+                            Double.parseDouble(data.get("X").toString()),
+                            data.get("PLACENM").toString(),
+                            markerId, 0
+                    );
+                    poIdata.endPOIdata();
+
+                    NMapPOIdataOverlay poIdataOverlay = mapOverlayManager.createPOIdataOverlay(poIdata, null);
+                    poIdataOverlay.showAllPOIdata(0);
                 }
 
             } catch (Exception e) {
@@ -135,4 +162,5 @@ public class DetailActivity extends NMapActivity {
             return null;
         }
     }
+
 }
