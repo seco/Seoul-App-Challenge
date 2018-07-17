@@ -2,6 +2,7 @@ package com.sejongsoftware.seoulappproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -96,8 +97,6 @@ public class DetailActivity extends NMapActivity {
                             Double.parseDouble(data.get("X").toString())
                     );
 
-                    mMapView.getMapController().setMapCenter( point, 8 );
-
                     int markerId = NMapPOIflagType.PIN;
 
                     NMapPOIdata poIdata = new NMapPOIdata(1, nMapResourceProvider);
@@ -112,6 +111,8 @@ public class DetailActivity extends NMapActivity {
 
                     NMapPOIdataOverlay poIdataOverlay = mapOverlayManager.createPOIdataOverlay(poIdata, null);
                     poIdataOverlay.showAllPOIdata(0);
+
+                    mMapView.getMapController().setMapCenter( point, 10 );
                 }
 
             } catch (Exception e) {
