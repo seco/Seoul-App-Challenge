@@ -44,10 +44,4 @@ public class LoginActivity extends Activity {
         Log.i("LOGIN_INFO", PASS);
     }
 
-    public void goToRegister(View v)
-    {
-        Intent intent = new Intent( getApplicationContext(), RegisterActivity.class );
-        startActivity(intent);
-    }
-
 }
