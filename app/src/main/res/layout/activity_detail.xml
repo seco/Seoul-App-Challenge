@@ -4,8 +4,7 @@
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    >
+    android:background="#fff" >
 
     <!-- Naver Map API -->
     <com.nhn.android.maps.NMapView
@@ -34,15 +33,29 @@
                 android:textColor="#111"/>
             <TextView
                 android:id="@+id/tv_detail_SVCNM"
-                android:width="300dp"
                 android:textSize="20sp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
                 android:textColor="#111"/>
         </LinearLayout>
 
         <!-- CONTENT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_calendar_today_black_18dp"
+                android:layout_marginRight="10dp"/>
+            <TextView
+                android:id="@+id/tv_detail_SVCDATE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,11 +116,55 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+
+        <!-- RESERVATION -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_assignment_turned_in_black_18dp"
+                android:layout_marginRight="10dp"/>
+            <TextView
+                android:id="@+id/tv_detail_RCEPTMTH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_assignment_turned_in_black_18dp"
+                android:layout_marginRight="10dp"/>
+            <TextView
+                android:id="@+id/tv_detail_RCEPTDATE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- FLOAT BUTTON -->
     <com.gc.materialdesign.views.ButtonFloat
-        android:id="@+id/buttonFloat"
+        android:id="@+id/floatBtnRedirect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="84dp"
+        android:background="#ff6347"
+        materialdesign:animate="false"
+        materialdesign:iconDrawable="@drawable/ic_action_redirect" />
+
+    <com.gc.materialdesign.views.ButtonFloat
+        android:id="@+id/floatBtnCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -116,7 +173,7 @@
         android:layout_marginBottom="24dp"
         android:background="#ff6347"
         materialdesign:animate="false"
-        materialdesign:iconDrawable="@drawable/ic_action_redirect" />
+        materialdesign:iconDrawable="@drawable/ic_action_call" />
 
     <!-- ... XML CODE -->
 </RelativeLayout>
