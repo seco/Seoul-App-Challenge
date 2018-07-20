@@ -37,7 +37,8 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff"
+                    android:background="@drawable/borderd_svcstat_bad"/>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout

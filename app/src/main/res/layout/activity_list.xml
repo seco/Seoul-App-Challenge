@@ -12,7 +12,7 @@
             android:id="@+id/activity_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#3f9f40"
+            android:background="#ff6347"
             android:textSize="20sp"
             android:text="로딩중.."
             android:gravity="center"
@@ -30,25 +30,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="3dp"
             android:gravity="right">
             <Spinner
                 android:id="@+id/spinnerArea"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp">
             </Spinner>
             <Spinner
                 android:id="@+id/spinnerMinClass"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
             </Spinner>
-            <Button
+            <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@+id/btnCategorySearch"
                 android:text="조회"
+                android:onClick="searchByCategory"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="searchByCategory" />
+                android:layout_height="50dp"
+                android:background="#ff6347"
+                android:paddingTop="0dp">
+
+            </com.gc.materialdesign.views.ButtonRectangle>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -58,7 +64,8 @@
         <ListView
             android:id="@+id/list_service"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#fff">
         </ListView>
     </LinearLayout>
 

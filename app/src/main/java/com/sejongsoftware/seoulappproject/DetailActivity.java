@@ -16,6 +16,7 @@ import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay;
 import com.nhn.android.mapviewer.overlay.NMapResourceProvider;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -67,14 +68,22 @@ public class DetailActivity extends NMapActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            //
+
             Log.i("datail_data", data.toString());
 
             TextView tv_detail_SVCNM = (TextView) findViewById(R.id.tv_detail_SVCNM);
             TextView tv_detail_SVCSTTUS_NM = (TextView) findViewById(R.id.tv_detail_SVCSTTUS_NM);
+            TextView tv_detail_PLACENM = (TextView) findViewById(R.id.tv_detail_PLACENM);
+            TextView tv_detail_PAYNM = (TextView) findViewById(R.id.tv_detail_PAYNM);
+            TextView tv_detail_TELNO = (TextView) findViewById(R.id.tv_detail_TELNO);
+            TextView tv_detail_ACCESS = (TextView) findViewById(R.id.tv_detail_ACCESS);
 
             try {
                 tv_detail_SVCNM.setText( data.get("SVCNM").toString() );
+                tv_detail_PLACENM.setText( data.get("ADRES").toString() );
+                tv_detail_PAYNM.setText( data.get("PAYAT").toString() );
+                tv_detail_TELNO.setText( data.get("TELNO").toString() );
+                tv_detail_ACCESS.setText( data.get("SELMTHDCODE_NM").toString() + " " + String.valueOf( (int) Double.parseDouble(data.get("ONEREQMXMPR").toString())) + data.get("UNICODE_NM").toString() );
 
                 if ( data.has("SVCSTTUS_NM") ) {
                     tv_detail_SVCSTTUS_NM.setText( data.get("SVCSTTUS_NM").toString() );
@@ -146,9 +155,6 @@ public class DetailActivity extends NMapActivity {
 
                     data = new JSONObject(strJson);
                 }
-                //Log.i("jsonObj", jsonObj.get("row").toString());
-
-                //data = new JSONObject(jsonObj.get("row").toString());
             } catch (Exception e) {
                 Log.d("strJson", "실패");
             }
