@@ -34,6 +34,7 @@ import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -60,31 +61,36 @@ public class ListActivity extends Activity {
         MAXCLASSNM = intent.getStringExtra("service");
         servicesList = (ListView) findViewById(R.id.list_service);
 
+        // 소분류 Spinner
         Spinner spinner = (Spinner) findViewById(R.id.spinnerMinClass);
+        List<String> minclass_list = new ArrayList<String>();
         switch (MAXCLASSNM) {
             case "체육시설":
-                spinner.setAdapter(ArrayAdapter.createFromResource(this, R.array.sport_list, android.R.layout.simple_spinner_item));
+                minclass_list = Arrays.asList( getResources().getStringArray(R.array.sport_list) );
                 break;
             case "시설대관":
-                spinner.setAdapter(ArrayAdapter.createFromResource(this, R.array.institution_list, android.R.layout.simple_spinner_item));
+                minclass_list = Arrays.asList( getResources().getStringArray(R.array.institution_list) );
                 break;
             case "문화행사":
-                spinner.setAdapter(ArrayAdapter.createFromResource(this, R.array.culture_list, android.R.layout.simple_spinner_item));
+                minclass_list = Arrays.asList( getResources().getStringArray(R.array.culture_list) );
                 break;
             case "교육":
-                spinner.setAdapter(ArrayAdapter.createFromResource(this, R.array.education_list, android.R.layout.simple_spinner_item));
+                minclass_list = Arrays.asList( getResources().getStringArray(R.array.education_list) );
                 break;
             case "진료":
-                spinner.setAdapter(ArrayAdapter.createFromResource(this, R.array.medical_list, android.R.layout.simple_spinner_item));
+                minclass_list = Arrays.asList( getResources().getStringArray(R.array.medical_list) );
                 break;
         }
+        spinner.setAdapter( new ClassSpinnerAdapter(this, minclass_list) );
 
         TextView tv_activity_title = (TextView) findViewById(R.id.activity_title);
         tv_activity_title.setText(MAXCLASSNM);
 
-
+        // 지역명 Spinner
         Spinner areaSpinner = (Spinner) findViewById(R.id.spinnerArea);
-        areaSpinner.setAdapter(ArrayAdapter.createFromResource(this, R.array.area_list, android.R.layout.simple_spinner_item));
+        List<String> area_list = new ArrayList<String>();
+        area_list = Arrays.asList(getResources().getStringArray(R.array.area_list));
+        areaSpinner.setAdapter( new ClassSpinnerAdapter(this, area_list) );
 
         ServciesListTask servciesListTask = new ServciesListTask();
         servciesListTask.execute(API_KEY, MAXCLASSNM, MINCLASSNM, AREANM);

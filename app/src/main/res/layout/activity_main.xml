@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="70dp">
+        android:padding="80dp"
+        android:background="#fff">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,9 +64,9 @@
             android:id="@+id/btnMedical"
             android:text="진료서비스"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:background="@drawable/borderd_maxclassnm"
-            android:padding="5dp"
+            android:padding="10dp"
             android:layout_marginTop="10dp"/>
     </LinearLayout>
 </LinearLayout>

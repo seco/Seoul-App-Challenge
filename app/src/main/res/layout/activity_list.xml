@@ -24,7 +24,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#fff">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,16 +35,19 @@
             android:gravity="right">
             <Spinner
                 android:id="@+id/spinnerArea"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp">
+                android:layout_marginTop="5dp"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/spinner_class">
             </Spinner>
             <Spinner
                 android:id="@+id/spinnerMinClass"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="5dp"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/spinner_class">
             </Spinner>
             <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@+id/btnCategorySearch"
@@ -51,12 +55,18 @@
                 android:onClick="searchByCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:background="#ff6347"
-                android:paddingTop="0dp">
+                android:background="#ff6347">
 
             </com.gc.materialdesign.views.ButtonRectangle>
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eee" >
+    </View>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
