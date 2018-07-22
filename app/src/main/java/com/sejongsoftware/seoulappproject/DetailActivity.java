@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFloat;
@@ -106,7 +107,6 @@ public class DetailActivity extends NMapActivity {
             Log.i("datail_data", data.toString());
 
             TextView tv_detail_SVCNM = (TextView) findViewById(R.id.tv_detail_SVCNM);
-            TextView tv_detail_SVCSTTUS_NM = (TextView) findViewById(R.id.tv_detail_SVCSTTUS_NM);
             TextView tv_detail_PLACENM = (TextView) findViewById(R.id.tv_detail_PLACENM);
             TextView tv_detail_PAYNM = (TextView) findViewById(R.id.tv_detail_PAYNM);
             TextView tv_detail_TELNO = (TextView) findViewById(R.id.tv_detail_TELNO);
@@ -115,23 +115,25 @@ public class DetailActivity extends NMapActivity {
             TextView tv_detail_RCEPTDATE = (TextView) findViewById(R.id.tv_detail_RCEPTDATE);
             TextView tv_detail_SVCDATE = (TextView) findViewById(R.id.tv_detail_SVCDATE);
 
+  //          ImageView iv_detail_SVCSTTUS = (ImageView) findViewById(R.id.iv_detail_SVCSTTUS);
+
             try {
                 tv_detail_SVCNM.setText( data.get("SVCNM").toString() );
                 tv_detail_PLACENM.setText( data.get("ADRES").toString() );
                 tv_detail_PAYNM.setText( data.get("PAYAT").toString() );
                 tv_detail_TELNO.setText( data.get("TELNO").toString() );
                 tv_detail_ACCESS.setText( data.get("SELMTHDCODE_NM").toString() + " " + String.valueOf( (int) Double.parseDouble(data.get("ONEREQMXMPR").toString())) + data.get("UNICODE_NM").toString() );
-                tv_detail_RCEPTMTH.setText( "접수 방법 : " + data.get("RCEPTMTH_NM").toString() );
-                tv_detail_RCEPTDATE.setText( "접수 기간 : " + data.get("RCEPTBEGDT").toString() + " ~ " + data.get("RCEPTENDDT").toString() );
+                tv_detail_RCEPTMTH.setText( data.get("RCEPTMTH_NM").toString() );
+                tv_detail_RCEPTDATE.setText( data.get("RCEPTBEGDT").toString() + " ~ " + data.get("RCEPTENDDT").toString() );
                 tv_detail_SVCDATE.setText( data.get("SVCBEGINDT").toString() + " ~ " + data.get("SVCENDDT").toString() );
-
-                if ( data.has("SVCSTTUS_NM") ) {
-                    tv_detail_SVCSTTUS_NM.setText( data.get("SVCSTTUS_NM").toString() );
+                /*
+                if ( data.get("SVCSTTUS_NM").toString().equals("접수중") ) {
+                    iv_detail_SVCSTTUS.setImageResource(R.drawable.baseline_check_circle_outline_black_18dp);
                 }
                 else {
-                    tv_detail_SVCSTTUS_NM.setText( data.get("SVCSTATNM").toString() );
+                    iv_detail_SVCSTTUS.setImageResource(R.drawable.baseline_error_outline_black_18dp);
                 }
-
+*/
 
                 if ( !data.get("X").toString().equals("0") ) {
                     NGeoPoint point = new NGeoPoint(

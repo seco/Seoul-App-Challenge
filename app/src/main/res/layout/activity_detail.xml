@@ -18,135 +18,153 @@
         android:layout_height="match_parent"
         android:layout_below="@id/nmap_view"
         android:orientation="vertical"
-        android:paddingLeft="5dp">
-        <!-- HEADER -->
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="5dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-            <TextView
-                android:id="@+id/tv_detail_SVCSTTUS_NM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#111"/>
-            <TextView
-                android:id="@+id/tv_detail_SVCNM"
-                android:textSize="20sp"
+            android:orientation="vertical"
+            android:background="@drawable/material_box"
+            android:padding="10dp">
+            <!-- HEADER -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:textColor="#111"/>
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp" >
+                <!--
+                <ImageView
+                    android:id="@+id/iv_detail_SVCSTTUS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"/>
+                -->
+                <TextView
+                    android:id="@+id/tv_detail_SVCNM"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="2dp"
+                    android:textColor="#111"/>
+            </LinearLayout>
 
-        <!-- CONTENT -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_calendar_today_black_18dp"
-                android:layout_marginRight="10dp"/>
-            <TextView
-                android:id="@+id/tv_detail_SVCDATE"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_location_on_black_18dp"
-                android:layout_marginRight="10dp"/>
-            <TextView
-                android:id="@+id/tv_detail_PLACENM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_attach_money_black_18dp"
-                android:layout_marginRight="10dp"/>
-            <TextView
-                android:id="@+id/tv_detail_PAYNM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_call_black_18dp"
-                android:layout_marginRight="10dp"/>
-            <TextView
-                android:id="@+id/tv_detail_TELNO"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_accessibility_black_18dp"
-                android:layout_marginRight="10dp"/>
-            <TextView
-                android:id="@+id/tv_detail_ACCESS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eee"
+                android:layout_marginBottom="15dp">
+            </View>
 
-        <!-- RESERVATION -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
+            <!-- CONTENT -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_assignment_turned_in_black_18dp"
-                android:layout_marginRight="10dp"/>
-            <TextView
-                android:id="@+id/tv_detail_RCEPTMTH"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_calendar_today_black_18dp"
+                    android:layout_marginRight="10dp"/>
+                <TextView
+                    android:id="@+id/tv_detail_SVCDATE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_assignment_turned_in_black_18dp"
-                android:layout_marginRight="10dp"/>
-            <TextView
-                android:id="@+id/tv_detail_RCEPTDATE"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_location_on_black_18dp"
+                    android:layout_marginRight="10dp"/>
+                <TextView
+                    android:id="@+id/tv_detail_PLACENM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_attach_money_black_18dp"
+                    android:layout_marginRight="10dp"/>
+                <TextView
+                    android:id="@+id/tv_detail_PAYNM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_call_black_18dp"
+                    android:layout_marginRight="10dp"/>
+                <TextView
+                    android:id="@+id/tv_detail_TELNO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_accessibility_black_18dp"
+                    android:layout_marginRight="10dp"/>
+                <TextView
+                    android:id="@+id/tv_detail_ACCESS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <!-- RESERVATION -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_assignment_turned_in_black_18dp"
+                    android:layout_marginRight="10dp"/>
+                <TextView
+                    android:id="@+id/tv_detail_RCEPTMTH"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_assignment_turned_in_black_18dp"
+                    android:layout_marginRight="10dp"/>
+                <TextView
+                    android:id="@+id/tv_detail_RCEPTDATE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
