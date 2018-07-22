@@ -10,8 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gc.materialdesign.views.ButtonFloat;
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.nhn.android.maps.NMapActivity;
 import com.nhn.android.maps.NMapView;
 import com.nhn.android.maps.maplib.NGeoPoint;
@@ -23,6 +25,9 @@ import com.nhn.android.mapviewer.overlay.NMapResourceProvider;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -82,6 +87,14 @@ public class DetailActivity extends NMapActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        ButtonRectangle btnBookmark = (ButtonRectangle) findViewById(R.id.btn_bookmark);
+        btnBookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleBookmark();
             }
         });
     }
@@ -202,5 +215,62 @@ public class DetailActivity extends NMapActivity {
             return null;
         }
     }
+    public void toggleBookmark()
+    {
+        File file = new File(getFilesDir(), "user_bookmark.txt");
+        FileReader fr = null;
+        FileWriter fw = null;
+        BufferedReader br = null;
+        String data;
+        String before = "";
+        char ch;
 
+
+        if( file.exists() == true ) {
+            boolean flags = false;
+
+            try {
+                fr = new FileReader(file);
+                br = new BufferedReader(fr);
+
+                while ((data = br.readLine()) != null) {
+                    if( data.equals(SVCID) ) {
+                        flags = true;
+                    }
+                    else {
+                        before += data + "\n";
+                    }
+                }
+                Log.i("ch", "hello");
+                fr.close();
+
+                fw = new FileWriter(file);
+                if( flags )
+                {
+                    fw.write(before);
+                    Toast.makeText( getApplicationContext(), "즐겨찾기가 해제되었습니다", Toast.LENGTH_SHORT ).show();
+                }
+                else {
+                    fw.write(before + SVCID);
+                    Toast.makeText( getApplicationContext(), "즐겨찾기가 등록되었습니다", Toast.LENGTH_SHORT ).show();
+                }
+                fw.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            try {
+                fw = new FileWriter(file);
+
+                fw.write(SVCID);
+
+                fw.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
 }

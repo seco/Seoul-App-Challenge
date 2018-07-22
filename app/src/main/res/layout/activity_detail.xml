@@ -21,7 +21,8 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="8dp"
-        android:paddingBottom="5dp">
+        android:paddingBottom="5dp"
+        android:id="@+id/detail_info_box">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -166,7 +167,15 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="즐겨찾기 등록"
+            android:id="@+id/btn_bookmark">
+        </com.gc.materialdesign.views.ButtonRectangle>
     </LinearLayout>
+
 
     <!-- FLOAT BUTTON -->
     <com.gc.materialdesign.views.ButtonFloat

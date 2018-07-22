@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
+
 /*
 Example : http://openAPI.seoul.go.kr:8088/(인증키)/xml/ListPublicReservationInstitution/1/5/(소분류
 체육 시설 : ListPublicReservationSport
@@ -55,6 +57,7 @@ public class MainActivity extends Activity {
         Button btnEducation = (Button) findViewById(R.id.btnEducation);
         Button btnCulture = (Button) findViewById(R.id.btnCulture);
         Button btnMedical = (Button) findViewById(R.id.btnMedical);
+        Button btnBookmark = (Button) findViewById(R.id.btnBookmark);
 
         btnSport.setOnClickListener(onClickListener);
         btnInstitution.setOnClickListener(onClickListener);
@@ -62,6 +65,12 @@ public class MainActivity extends Activity {
         btnCulture.setOnClickListener(onClickListener);
         btnMedical.setOnClickListener(onClickListener);
 
-
+        btnBookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( getApplicationContext(), BookmarkActivity.class );
+                startActivity(intent);
+            }
+        });
     }
 }

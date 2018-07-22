@@ -44,10 +44,11 @@
             <Spinner
                 android:id="@+id/spinnerMinClass"
                 android:layout_marginTop="5dp"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/spinner_class">
+                android:background="@drawable/spinner_class"
+                android:gravity="center">
             </Spinner>
             <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@+id/btnCategorySearch"

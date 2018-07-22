@@ -60,14 +60,29 @@
                     android:background="@drawable/borderd_maxclassnm"/>
             </LinearLayout>
         </LinearLayout>
-        <Button
-            android:id="@+id/btnMedical"
-            android:text="진료서비스"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/borderd_maxclassnm"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+            <Button
+                android:id="@+id/btnMedical"
+                android:text="교육"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/borderd_maxclassnm"/>
+            <LinearLayout
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnBookmark"
+                    android:text="즐겨찾기"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/borderd_maxclassnm"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
 
