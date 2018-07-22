@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,9 @@ public class DetailActivity extends NMapActivity {
     NMapView mMapView;
     private NMapResourceProvider nMapResourceProvider;
     private NMapOverlayManager mapOverlayManager;
+    ImageButton btnBookmark;
+
+    boolean isStarted = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,7 +94,12 @@ public class DetailActivity extends NMapActivity {
             }
         });
 
-        ButtonRectangle btnBookmark = (ButtonRectangle) findViewById(R.id.btn_bookmark);
+        btnBookmark = (ImageButton) findViewById(R.id.btn_bookmark);
+
+        toggleBookmark();
+        toggleBookmark();
+        isStarted = true;
+
         btnBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -248,11 +257,18 @@ public class DetailActivity extends NMapActivity {
                 if( flags )
                 {
                     fw.write(before);
-                    Toast.makeText( getApplicationContext(), "즐겨찾기가 해제되었습니다", Toast.LENGTH_SHORT ).show();
+                    if( isStarted ) {
+                        Toast.makeText(getApplicationContext(), "즐겨찾기가 해제되었습니다", Toast.LENGTH_SHORT).show();
+                    }
+                    btnBookmark.setImageResource(R.drawable.bookmark_off);
+
                 }
                 else {
                     fw.write(before + SVCID);
-                    Toast.makeText( getApplicationContext(), "즐겨찾기가 등록되었습니다", Toast.LENGTH_SHORT ).show();
+                    if( isStarted ) {
+                        Toast.makeText(getApplicationContext(), "즐겨찾기가 등록되었습니다", Toast.LENGTH_SHORT).show();
+                    }
+                    btnBookmark.setImageResource(R.drawable.bookmark_on);
                 }
                 fw.close();
             } catch (Exception e) {

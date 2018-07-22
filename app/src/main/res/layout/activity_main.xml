@@ -67,7 +67,7 @@
             android:padding="5dp">
             <Button
                 android:id="@+id/btnMedical"
-                android:text="교육"
+                android:text="진료"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/borderd_maxclassnm"/>
