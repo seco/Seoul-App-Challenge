@@ -3,7 +3,7 @@
     <item>
         <layer-list>
             <!-- shadow (밑으로) : 그림자 -->
-            <item android:top="3dp">
+            <item android:bottom="3dp">
                 <shape>
                     <corners android:radius="3dp" />
                     <solid android:color="#ccc" />

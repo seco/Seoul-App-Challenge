@@ -84,7 +84,7 @@ public class BookmarkActivity extends Activity {
                 e.printStackTrace();
             }
 
-            String SERVICE_URL = "http://10.0.2.2:8080/public/service/";
+            String SERVICE_URL = "http://sejongsoftware.com/public/service/";
 
             for (String svcid : svcids )
             {

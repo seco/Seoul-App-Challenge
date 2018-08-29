@@ -146,7 +146,7 @@ public class ListActivity extends Activity {
         protected JSONArray doInBackground(String... strings) {
 
             //"http://openAPI.seoul.go.kr:8088/"+API_KEY+"/json/ListPublicReservation"+Service+"/1/5/";
-            String JSON_URL = "http://10.0.2.2:8080/public/servicies";
+            String JSON_URL = "http://sejongsoftware.com/public/servicies";
             HttpPost httppost = new HttpPost(JSON_URL);
             HttpClient httpclient = new DefaultHttpClient();
             HttpResponse response;

@@ -200,11 +200,10 @@ public class DetailActivity extends NMapActivity {
 
                 String strJson = br.readLine();
 
-
                 JSONObject jsonObj = new JSONObject(strJson);
                 data = (JSONObject) jsonObj.getJSONObject("ListPublicReservationDetail").getJSONArray("row").get(0);
 
-                URL JSON_URL1 = new URL("http://10.0.2.2:8080/public/service/" + SVCID);
+                URL JSON_URL1 = new URL("http://sejongsoftware.com/public/service/" + SVCID);
 
                 //Log.d("JSON_URL", JSON_URL1.toString());
 
